@@ -9,10 +9,10 @@ module.exports = {
     LEAVE_EMPTY: process.env.LEAVE_EMPTY || "120000",
     NODES: [
         {
-            name: process.env.NODES_NAME || 'NanoSpace',
-            url: process.env.NODES_URL || 'localhost:5555',
-            auth: process.env.EMBED_AUTH || 'nanospace',
-            secure: false
+            name: process.env.NODE_NAME || 'NanoSpace',
+            url: process.env.NODE_URL || 'localhost:5555',
+            auth: process.env.NODE_AUTH || 'nanospace',
+            secure: Boolean(process.env.NODE_SECURE) || false
         }
     ]
 }
