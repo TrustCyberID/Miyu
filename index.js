@@ -3,10 +3,8 @@ const { Connectors } = require("shoukaku");
 const { Kazagumo, Plugins } = require("kazagumo");
 
 const client = new Client({
-    shards: "auto",
     intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildVoiceStates
     ],
