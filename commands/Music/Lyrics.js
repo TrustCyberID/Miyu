@@ -19,7 +19,7 @@ module.exports = {
         const { channel } = interaction.member.voice;
         if (!channel || interaction.member.voice.channel !== interaction.guild.members.me.voice.channel) return interaction.reply(`I'm not in the same voice channel as you!`);
 
-        const song = interaction.options.getString("result");
+        let song = interaction.options.getString("result");
         let CurrentSong = player.queue.current;
         if (!song && CurrentSong) song = CurrentSong.title;
 
