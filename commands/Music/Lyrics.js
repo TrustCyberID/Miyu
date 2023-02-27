@@ -26,6 +26,7 @@ module.exports = {
         let lyrics = null;
 
         try {
+            song = song.split(" ").join("+");
             lyrics = await request(`https://api.vinndev.me/lyrics/search?q=${song}`);
             if (!lyrics || lyrics.data) return interaction.reply(`No lyrics found for ${song}`);
         } catch (err) {
