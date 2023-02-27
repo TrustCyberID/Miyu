@@ -1,3 +1,6 @@
+process.on("unhandledRejection", console.error);
+process.on("uncaughtException", console.error);
+
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { Connectors } = require("shoukaku");
 const { Kazagumo, Plugins } = require("kazagumo");
@@ -10,6 +13,9 @@ const client = new Client({
     ],
     allowedMentions: { parse: ["users", "roles"] },
 });
+
+client.on("error", console.error);
+client.on("warn", console.warn);
 
 client.config = require("./settings/config.js");
 client.prefix = client.config.PREFIX;
