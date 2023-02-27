@@ -5,7 +5,7 @@ module.exports = async (client) => {
 
     const activity = {
         name: `/play <songs>`,
-        type: 5,
+        type: 2,
     };
 
     client.user.setPresence({ 
