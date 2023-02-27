@@ -5,11 +5,11 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "kazagumo": "^2.3.2",
-    "lyrics-finder": "^21.7.0",
     "plsargs": "^0.1.6",
     "recursive-readdir": "^2.2.3",
     "shoukaku": "^3.3.1",
-    "stuffs": "^0.1.27"
+    "stuffs": "^0.1.27",
+    "undici": "^5.20.0"
   },
   "name": "miyu",
   "description": "✈ Join Discord: https://discord.gg/4pk97A2 👌",

@@ -1,4 +1,4 @@
-const lyricsfinder = require('lyrics-finder');
+const { request } = require("undici");
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = { 
@@ -26,22 +26,24 @@ module.exports = {
         let lyrics = null;
 
         try {
-            lyrics = await lyricsfinder(song, "");
-            if (!lyrics) return interaction.reply(`No lyrics found for ${song}`);
+            lyrics = await request(`https://api.vinndev.me/lyrics/search?q=${song}`);
+            if (!lyrics || lyrics.data) return interaction.reply(`No lyrics found for ${song}`);
         } catch (err) {
             console.log(err);
             return interaction.reply(`No lyrics found for ${song}`);
         }
+
+        const result = lyrics.data;
+
         let lyricsEmbed = new EmbedBuilder()
             .setColor(client.color)
-            .setTitle(`Lyrics for ${song}`)
-            .setDescription(`${lyrics}`)
-            .setFooter({ text: `Powered By: lyrics-finder`})
+            .setAuthor({ name: result.artists.map(artist => artist).join(", ") })
+            .setTitle(result.title)
+            .setDescription(result.lyrics.length > 4096 ? result.lyrics.substr(0, 4093)+'...' : result.lyrics)
+            .setThumbnail(result.thumbnail)
+            .setFooter({ text: `Source: ${result.source} | Powered by ${lyrics.provider.name}`})
             .setTimestamp();
 
-        if (lyrics.length > 2048) {
-            lyricsEmbed.setDescription(`Lyrics are too long to display!`);
-        }
-        interaction.reply({ content: ' ', embeds: [lyricsEmbed] });
+        interaction.reply({ embeds: [lyricsEmbed] });
     }
 };
