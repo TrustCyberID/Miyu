@@ -35,10 +35,11 @@ module.exports = {
         }
 
         const result = lyrics.data;
+        console.log(result);
 
         let lyricsEmbed = new EmbedBuilder()
             .setColor(client.color)
-            .setAuthor({ name: result.artists.map(artist => artist).join(", ") })
+            .setAuthor({ name: result.artists.map(artist => artist.name).join(", ") })
             .setTitle(result.title)
             .setDescription(result.lyrics.length > 4096 ? result.lyrics.substr(0, 4093)+'...' : result.lyrics)
             .setThumbnail(result.thumbnail)
